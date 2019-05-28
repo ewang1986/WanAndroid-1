@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 
 public class DisplayUtil {
     //获取屏幕原始尺寸高度，包括虚拟功能键高度
-    public static int getDpi(Context context){
+    public static int getDpi(Context context) {
         int dpi = 0;
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
@@ -29,10 +29,10 @@ public class DisplayUtil {
         try {
             c = Class.forName("android.view.Display");
             @SuppressWarnings("unchecked")
-            Method method = c.getMethod("getRealMetrics",DisplayMetrics.class);
+            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
             method.invoke(display, displayMetrics);
-            dpi=displayMetrics.heightPixels;
-        }catch(Exception e){
+            dpi = displayMetrics.heightPixels;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return dpi;
@@ -40,23 +40,23 @@ public class DisplayUtil {
 
     /**
      * 获取 虚拟按键的高度
+     *
      * @param context
      * @return
      */
-    public static  int getBottomStatusHeight(Context context){
+    public static int getBottomStatusHeight(Context context) {
         int totalHeight = getDpi(context);
-
         int contentHeight = getScreenHeight(context);
-
-        return totalHeight  - contentHeight;
+        return totalHeight - contentHeight;
     }
 
     /**
      * 标题栏高度
+     *
      * @return
      */
-    public static int getTitleHeight(Activity activity){
-        return  activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
+    public static int getTitleHeight(Activity activity) {
+        return activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
     }
 
     /**
@@ -65,19 +65,15 @@ public class DisplayUtil {
      * @param context
      * @return
      */
-    public static int getStatusHeight(Context context)
-    {
-
+    public static int getStatusHeight(Context context) {
         int statusHeight = -1;
-        try
-        {
+        try {
             Class<?> clazz = Class.forName("com.android.internal.R$dimen");
             Object object = clazz.newInstance();
             int height = Integer.parseInt(clazz.getField("status_bar_height")
                     .get(object).toString());
             statusHeight = context.getResources().getDimensionPixelSize(height);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return statusHeight;
@@ -90,16 +86,14 @@ public class DisplayUtil {
      * @param context
      * @return
      */
-    public static int getScreenHeight(Context context)
-    {
+    public static int getScreenHeight(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
     }
 
-    public static int getScreenWidth(Context context)
-    {
+    public static int getScreenWidth(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
@@ -108,6 +102,7 @@ public class DisplayUtil {
 
     /**
      * 将px值转换为dip或dp值，保证尺寸大小不变
+     *
      * @param context
      * @param pxValue
      * @return
@@ -119,6 +114,7 @@ public class DisplayUtil {
 
     /**
      * 将dip或dp值转换为px值，保证尺寸大小不变
+     *
      * @param context
      * @param dipValue
      * @return
@@ -130,6 +126,7 @@ public class DisplayUtil {
 
     /**
      * 将px值转换为sp值，保证文字大小不变
+     *
      * @param context
      * @param pxValue
      * @return
@@ -141,6 +138,7 @@ public class DisplayUtil {
 
     /**
      * 将sp值转换为px值，保证文字大小不变
+     *
      * @param context
      * @param spValue
      * @return

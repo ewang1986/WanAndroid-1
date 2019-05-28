@@ -25,7 +25,6 @@ public class Constant {
     public static String NETBROADCAST = "CONNECTIVITY_CHANGE";
     public static final String BUGLY_ID = "8029004728";
 
-
     public static final String ARTICLE_TITLE = "article_title";
     public static final String ARTICLE_LINK = "article_link";
     public static final String ARTICLE_ID = "article_id";
@@ -105,4 +104,3 @@ public class Constant {
     public static final String ROOMDETAIL = "room_detail";
 
 }
-

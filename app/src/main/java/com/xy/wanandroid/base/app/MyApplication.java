@@ -1,8 +1,8 @@
 package com.xy.wanandroid.base.app;
 
 import android.app.Application;
-
 import com.tencent.bugly.crashreport.CrashReport;
+
 import com.xy.wanandroid.di.component.ApplicationComponent;
 import com.xy.wanandroid.di.component.DaggerApplicationComponent;
 import com.xy.wanandroid.di.module.ApplicationModule;
